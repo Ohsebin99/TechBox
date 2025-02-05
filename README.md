@@ -1,1 +1,1 @@
-<h1 ThchBOx /h1>
+<h1>ThchBox</h1>
