@@ -17,5 +17,7 @@ public class MemberDTO {
     private String nickName;
     private String phoneNumber;
     private String address;
+    private String betterAddress;
+    private String postcode;
 
 }

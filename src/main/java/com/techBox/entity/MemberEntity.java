@@ -30,6 +30,12 @@ public class MemberEntity {
     @Column
     private String address;
 
+    @Column
+    private String betterAddress;
+
+    @Column
+    private String postcode;
+
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setId(memberDTO.getId());
@@ -37,6 +43,8 @@ public class MemberEntity {
         memberEntity.setNickName(memberDTO.getNickName());
         memberEntity.setPhoneNumber(memberDTO.getPhoneNumber());
         memberEntity.setAddress(memberDTO.getAddress());
+        memberEntity.setBetterAddress(memberDTO.getBetterAddress());
+        memberEntity.setPostcode(memberDTO.getPostcode());
         return memberEntity;
     }
 

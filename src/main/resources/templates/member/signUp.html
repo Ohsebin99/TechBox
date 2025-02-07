@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="/signUp/css/style.css">
+    <script type="text/javascript" src="/login/js/member.js"></script>
 
 	</head>
 	<body>
@@ -17,14 +18,12 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Sign Up #01</h2>
+					<h2 class="heading-section">회원가입</h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-7 col-lg-6 col-xl-5">
 					<div class="login-wrap p-4 p-md-5">
-		      	<h3 class="mb-4">Hello! <span>Please signup to continue</span></h3>
-		      	<a href="#" class="img d-flex align-items-center justify-content-center"><span class="fa fa-user-o"></span></a>
 				<form action="/member/signUp" method="post">
 		      		<div class="form-group mb-4">
 		      			<label class="label">ID</label>
@@ -45,21 +44,15 @@
 	            <div class="form-group mb-4">
 	            	<label class="label">주소</label>
 	              <input type="text" name="address" class="form-control" placeholder="Confirm Password" value="주소">
+					<input type="button" onclick="execDaumPostcode()" value="주소 찾기"><br>
+					<input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호" readonly="readonly" value="02807">
+					<input type="text" class="form-control" id="address" name="address" placeholder="주소" readonly="readonly" value="성동구 용답19길 15 - 1">
+					<input type="text" class="form-control" id="detailAddress" name="betterAddress" placeholder="상세주소" value="1층">
 	            </div>
 	            <div class="form-group">
 	            	<button type="submit" class="btn btn-primary rounded submit p-3">회원가입</button>
 	            </div>
 	          </form>
-	          <div class="w-100 social-wrap">
-	          	<p>
-	          		<span>or</span>
-	          		<span>Signup with</span>
-	          	</p>
-	          	<p class="social-media d-flex justify-content-center">
-								<a href="#" class="social-icon facebook d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-								<a href="#" class="social-icon twitter d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-							</p>
-							<p class="mt-4">I'm already a member! <a href="#signin">Sign In</a></p>
 	          </div>
 	        </div>
 				</div>
@@ -71,7 +64,7 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	</body>
 </html>
 
