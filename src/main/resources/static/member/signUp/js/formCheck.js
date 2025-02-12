@@ -14,10 +14,12 @@ const idCheck = () => {
                   // 서버에서 ID가 유효하다고 응답한 경우
                   $('#idCheckMessage2').text('');
                   $('#idCheckMessage1').text('사용가능한 아이디 입니다.').css('color', 'green');
+                  $('#idFormCheck').val('YES');
                 } else {
                   // 서버에서 ID가 유효하지 않다고 응답한 경우
                   $('#idCheckMessage1').text('');
                   $('#idCheckMessage2').text('아이디가 이미 존재합니다.').css('color', 'red');
+                  $('#idFormCheck').val('NO');
                 }
         },
         error: function(err) {
@@ -26,9 +28,10 @@ const idCheck = () => {
         }
       });
 }
-
+// 닉네임 중복 검사
 const nicknameCheck = () => {
     const nickname = $('#nickname').val();
+//    const idFormCheck = $('#idFormCheck').val();
     $.ajax({
         url: '/member/nickname-check', // 서버의 엔드포인트 URL을 설정합니다.
         type: 'POST',     // POST 요청을 사용하여 데이터를 서버로 전송합니다.
@@ -41,10 +44,12 @@ const nicknameCheck = () => {
                   // 서버에서 ID가 유효하다고 응답한 경우
                   $('#nicknameCheckMessage2').text('');
                   $('#nicknameCheckMessage1').text('사용가능한 닉네임 입니다.').css('color', 'green');
+                  $('#nicknameFormCheck').val('YES');
                 } else {
                   // 서버에서 ID가 유효하지 않다고 응답한 경우
                   $('#nicknameCheckMessage1').text('');
-                  $('#nicknameCheckMessage2').text('닉네임(이)가 이미 존재합니다.').css('color', 'red');
+                  $('#nicknameCheckMessage2').text('닉네임이 이미 존재합니다.').css('color', 'red');
+                  $('#nicknameFormCheck').val('NO');
                 }
         },
         error: function(err) {
@@ -102,3 +107,17 @@ function execDaumPostcode() {
         }
     }).open();
 }
+
+// formCheck
+function formCheck(){
+    const id = $('#idFormCheck').val();
+    const nickname = $('#nicknameFormCheck').val();
+
+    if(id === 'YES' && nickname === 'YES'){
+        return true;
+    }else{
+    alert('내용을 다시 확인해주시기바랍니다.');
+        return false;
+    }
+}
+

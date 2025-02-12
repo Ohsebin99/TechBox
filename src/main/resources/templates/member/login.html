@@ -15,9 +15,12 @@
 	  <script>
 		  window.onload = function() {
               let errorMessage = "[[${loginError}]]";
+              let signUpSuccess = "[[${signUpSuccess}]]";
               if (errorMessage) {
                   alert(errorMessage);
-              }
+              }else if(signUpSuccess){
+                    alert(signUpSuccess)
+                }
           }
 	  </script>
 	</head>

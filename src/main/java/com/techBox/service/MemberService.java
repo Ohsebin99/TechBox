@@ -14,10 +14,11 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public void save(MemberDTO memberDTO) {
+    public MemberDTO save(MemberDTO memberDTO) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
         MemberEntity save = memberRepository.save(memberEntity);
 
+        return memberDTO;
     }
 
     public MemberDTO login(MemberDTO memberDTO) {

@@ -22,10 +22,13 @@ public class MemberController {
         return "member/signUp";
     }
 
+    // 회원가입
     @PostMapping("/member/signUp")
-    public String SignUpForm(@ModelAttribute MemberDTO memberDTO) {
+    public String SignUpForm(@ModelAttribute MemberDTO memberDTO, RedirectAttributes rab) {
         System.out.println(memberDTO);
         memberService.save(memberDTO);
+
+        rab.addFlashAttribute("signUpSuccess", memberDTO.getUserId() + "님 가입을 축하합니다.");
         return "member/login";
     }
 
@@ -86,4 +89,6 @@ public class MemberController {
             return "fail";
         }
     }
+
+
 }
