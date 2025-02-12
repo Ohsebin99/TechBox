@@ -1,81 +1,86 @@
 <!doctype html>
-<html lang="en">
-  <head>
-  	<title>Sign Up 01</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sign Up 01</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" href="/signUp/css/style.css">
-    <script type="text/javascript" src="/login/js/member.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	</head>
-	<body>
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">회원가입</h2>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-7 col-lg-6 col-xl-5">
-					<div class="login-wrap p-4 p-md-5">
-				<form action="/member/signUp" method="post">
-		      		<div class="form-group mb-4">
-		      			<label class="label">ID</label>
-		      			<input type="text" name="id" class="form-control" placeholder="아이디" value="아이디">
-		      		</div>
-		      		<div class="form-group mb-4">
-		      			<label class="label">PW</label>
-		      			<input type="password" name="password" class="form-control" placeholder="비밀번호" value="비번">
-		      		</div>
-					<div class="form-group mb-4">
-						<label class="label">닉네임</label>
-						<input type="text" name="nickName" class="form-control" placeholder="닉네임" value="모루">
-					</div>
-	            <div class="form-group mb-4">
-	            	<label class="label">휴대폰번호</label>
-	              <input type="text" name="phoneNumber" class="form-control" placeholder="'-'없이 작성해주시기 바랍니다." value="01047067274">
-	            </div>
-<!--	            <div class="form-group mb-4">-->
-<!--	            	<label class="label">주소</label>-->
-<!--	              <input type="text" name="address" class="form-control" placeholder="Confirm Password" value="주소">-->
-<!--					<input type="button" onclick="execDaumPostcode()" value="주소 찾기"><br>-->
-<!--					<input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호" readonly="readonly" value="02807">-->
-<!--					<input type="text" class="form-control" id="address" name="address" placeholder="주소" readonly="readonly" value="성동구 용답19길 15 - 1">-->
-<!--					<input type="text" class="form-control" id="detailAddress" name="betterAddress" placeholder="상세주소" value="1층">-->
-<!--	            </div>-->
-					<div class="form-group mb-4">
-						<label class="label">주소</label>
-						<div class="input-group">
-							<input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호">
-							<div class="input-group-append">
-								<button type="button" class="btn btn-secondary" onclick="execDaumPostcode()">주소 찾기</button>
-							</div>
-						</div>
-						<input type="text" class="form-control mt-2" id="address" name="address" placeholder="주소">
-						<input type="text" class="form-control mt-2" id="detailAddress" name="betterAddress" placeholder="상세주소" >
-					</div>
-					<div class="form-group">
-	            	<button type="submit" class="btn btn-primary rounded submit p-3">회원가입</button>
-	            </div>
-	          </form>
-	          </div>
-	        </div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
 
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	</body>
+    <!-- JavaScript 파일 연결 -->
+    <script type="text/javascript" src="/member/signUp/js/formCheck.js"></script>
+
+    <link rel="stylesheet" href="/member/signUp/css/style.css">
+    <!-- 헤더 css -->
+</head>
+<body>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h1 class="heading-section">TechBox</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-6 col-xl-5">
+                <div class="login-wrap p-4 p-md-5">
+                    <form action="/member/signUp" method="post">
+                        <div class="form-group mb-4">
+                            <label class="label">ID</label>
+                            <input type="text" name="userId" id="userId" onkeyup="idCheck()" class="form-control"
+                                   placeholder="아이디">
+                            <div id="idCheckMessage1"></div>
+                            <div id="idCheckMessage2"></div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="label">PW</label>
+                            <input type="password" name="password" class="form-control" placeholder="비밀번호" value="비번">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="label">닉네임</label>
+                            <input type="text" name="nickname" id="nickname" onkeyup="nicknameCheck()" class="form-control" placeholder="닉네임" value="모루">
+                            <div id="nicknameCheckMessage1"></div>
+                            <div id="nicknameCheckMessage2"></div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="label">휴대폰번호</label>
+                            <input type="text" name="phoneNumber" class="form-control" placeholder="'-'없이 작성해주시기 바랍니다."
+                                   value="01047067274">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="label">주소</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="postcode" name="postcode"
+                                       placeholder="우편번호">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-secondary" onclick="execDaumPostcode()">주소 찾기
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control mt-2" id="address" name="address" placeholder="주소">
+                            <input type="text" class="form-control mt-2" id="detailAddress" name="betterAddress"
+                                   placeholder="상세주소">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary rounded submit p-3">회원가입</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</body>
 </html>
 

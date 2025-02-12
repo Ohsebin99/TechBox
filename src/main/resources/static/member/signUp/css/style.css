@@ -4,6 +4,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -44,10 +45,16 @@ html {
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background-color: #E6E6E6;
+  }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
+
+section{
+background-color: #E6E6E6;
+}
 
 body {
   margin: 0;
@@ -2033,7 +2040,7 @@ textarea.form-control {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #212529;
+  color: #2e2e2e;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -8133,7 +8140,7 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: "Lato", Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.8;
   font-weight: normal;
@@ -8144,23 +8151,22 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #8d448b; }
+  color: #000000; }
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
     -webkit-box-shadow: none;
-    box-shadow: none;
-    color: #8d448b; }
+    box-shadow: none; }
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Lato", Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   color: #000; }
 
 .bg-primary {
-  background: #8d448b !important; }
+  background: #000000 !important; }
 
 .ftco-section {
   padding: 7em 0; }
@@ -8188,147 +8194,142 @@ h1, h2, h3, h4, h5,
   -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); }
   .login-wrap h3 {
-    font-weight: 700;
-    font-size: 20px;
-    color: #8d448b; }
-  .login-wrap .icon {
-    width: 80px;
-    height: 80px;
-    background: #8d448b;
+    font-weight: 700; }
+    .login-wrap h3 span {
+      font-size: 16px;
+      display: block;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.4); }
+  .login-wrap .img {
+    display: block;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    font-size: 30px;
-    margin: 0 auto;
-    margin-bottom: 10px; }
-    .login-wrap .icon span {
+    background: rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 0;
+    margin-bottom: 20px; }
+    .login-wrap .img:before {
+      position: absolute;
+      bottom: 3px;
+      right: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #000000;
+      content: ''; }
+    .login-wrap .img:after {
+      position: absolute;
+      bottom: 2px;
+      right: -2px;
+      width: 12px;
+      height: 12px;
+      content: '\f067';
+      font-family: 'FontAwesome';
+      font-size: 6px;
       color: #fff; }
+    .login-wrap .img span {
+      font-size: 24px;
+      color: rgba(0, 0, 0, 0.3); }
+
+.form-group label {
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.3);
+  margin-bottom: 0; }
 
 .form-control {
-  height: 48px;
-  background: rgba(0, 0, 0, 0.05);
+  height: 40px;
+  background: #fff;
   color: #000;
-  font-size: 16px;
+  font-size: 18px;
+  border-radius: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border: 1px solid transparent;
-  padding-left: 20px;
-  padding-right: 20px;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out; }
-  @media (prefers-reduced-motion: reduce) {
-    .form-control {
-      -webkit-transition: none;
-      -o-transition: none;
-      transition: none; } }
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 0;
+  padding-right: 0; }
   .form-control::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    color: rgba(0, 0, 0, 0.2) !important; }
+    color: rgba(0, 0, 0, 0.3) !important; }
   .form-control::-moz-placeholder {
     /* Firefox 19+ */
-    color: rgba(0, 0, 0, 0.2) !important; }
+    color: rgba(0, 0, 0, 0.3) !important; }
   .form-control:-ms-input-placeholder {
     /* IE 10+ */
-    color: rgba(0, 0, 0, 0.2) !important; }
+    color: rgba(0, 0, 0, 0.3) !important; }
   .form-control:-moz-placeholder {
     /* Firefox 18- */
-    color: rgba(0, 0, 0, 0.2) !important; }
+    color: rgba(0, 0, 0, 0.3) !important; }
   .form-control:focus, .form-control:active {
     outline: none !important;
     -webkit-box-shadow: none;
     box-shadow: none;
-    background: rgba(0, 0, 0, 0.07);
-    border-color: transparent; }
+    border-color: #d5c455; }
 
-.checkbox-wrap {
-  display: block;
+textarea.form-control {
+  height: inherit !important; }
+
+.social-wrap {
+  text-align: center; }
+  .social-wrap span {
+    display: block; }
+
+.social-media {
   position: relative;
-  padding-left: 30px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
-
-/* Hide the browser's default checkbox */
-.checkbox-wrap input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0; }
-
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0; }
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "\f0c8";
-  font-family: "FontAwesome";
-  position: absolute;
-  color: rgba(0, 0, 0, 0.1);
-  font-size: 20px;
-  margin-top: -4px;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s; }
-  @media (prefers-reduced-motion: reduce) {
-    .checkmark:after {
-      -webkit-transition: none;
-      -o-transition: none;
-      transition: none; } }
-
-/* Show the checkmark when checked */
-.checkbox-wrap input:checked ~ .checkmark:after {
-  display: block;
-  content: "\f14a";
-  font-family: "FontAwesome";
-  color: rgba(0, 0, 0, 0.2); }
-
-/* Style the checkmark/indicator */
-.checkbox-primary {
-  color: #8d448b; }
-  .checkbox-primary input:checked ~ .checkmark:after {
-    color: #8d448b; }
+  width: 100%; }
+  .social-media .social-icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 50%; }
+    .social-media .social-icon.facebook {
+      background: #44629b; }
+    .social-media .social-icon.twitter {
+      background: #1dade9; }
+    .social-media .social-icon span {
+      color: #fff; }
+    .social-media .social-icon:hover, .social-media .social-icon:focus {
+      background: #d5c455; }
+      .social-media .social-icon:hover span, .social-media .social-icon:focus span {
+        color: #fff; }
 
 .btn {
   cursor: pointer;
   border-radius: 40px;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
   font-size: 15px; }
   .btn:hover, .btn:active, .btn:focus {
     outline: none; }
   .btn.btn-primary {
-    background: #8d448b !important;
-    border: 1px solid #8d448b !important;
-    color: #fff !important; }
+    background: #2E2E2E !important;
+    border: 1px solid #2E2E2E !important;
+    color: #fff !important;
+    -webkit-box-shadow: 0px 10px 19px -16px rgba(0, 0, 0, 0.29) !important;
+    -moz-box-shadow: 0px 10px 19px -16px rgba(0, 0, 0, 0.29) !important;
+    box-shadow: 0px 10px 19px -16px rgba(0, 0, 0, 0.29) !important; }
     .btn.btn-primary:hover {
-      border: 1px solid #8d448b;
+      border: 1px solid #2E2E2E;
       background: transparent;
-      color: #8d448b; }
+      color: #2E2E2E; }
     .btn.btn-primary.btn-outline-primary {
-      border: 1px solid #8d448b;
+      border: 1px solid #2E2E2E;
       background: transparent;
-      color: #8d448b; }
+      color: #2E2E2E; }
       .btn.btn-primary.btn-outline-primary:hover {
         border: 1px solid transparent;
-        background: #8d448b;
+        background: #2E2E2E;
         color: #fff; }
 
-.form-group {
-  position: relative; }
-  .form-group .submit {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
-    margin: 0 auto; }
-    @media (max-width: 767.98px) {
-      .form-group .submit {
-        top: 0; } }
+.submit {
+  width: 100%; }
+
+ #idCheckMessage1, #idCheckMessage2{
+ color = red;
+ }

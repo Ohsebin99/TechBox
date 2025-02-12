@@ -13,9 +13,9 @@ import lombok.ToString;
 public class MemberDTO {
 
     private String idIndex;
-    private String id;
+    private String userId;
     private String password;
-    private String nickName;
+    private String nickname;
     private String phoneNumber;
     private String address;
     private String betterAddress;
@@ -23,9 +23,9 @@ public class MemberDTO {
 
     public static MemberDTO toMemberDTO(MemberEntity memberEntity) {
         MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setId(memberEntity.getId());
+        memberDTO.setUserId(memberEntity.getUserId());
         memberDTO.setPassword(memberEntity.getPassword());
-        memberDTO.setNickName(memberEntity.getNickName());
+        memberDTO.setNickname(memberEntity.getNickname());
         memberDTO.setPhoneNumber(memberEntity.getPhoneNumber());
         memberDTO.setAddress(memberEntity.getAddress());
         memberDTO.setBetterAddress(memberEntity.getBetterAddress());

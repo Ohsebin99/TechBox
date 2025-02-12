@@ -21,7 +21,7 @@ public class MemberService {
     }
 
     public MemberDTO login(MemberDTO memberDTO) {
-        Optional<MemberEntity> byId = memberRepository.findById(memberDTO.getId());
+        Optional<MemberEntity> byId = memberRepository.findByUserId(memberDTO.getUserId());
         if (byId.isPresent()) {
             // 회원 정보 존재
             MemberEntity memberEntity = byId.get();
@@ -35,9 +35,34 @@ public class MemberService {
                 return null;
             }
         } else {
-            // 회원 정보 미본재
+            // 회원 정보 미존재
             return null;
         }
 
+    }
+
+    public String idCheck(String userId) {
+        Optional<MemberEntity> byId = memberRepository.findByUserId(userId);
+        System.out.println("userId 값: " + userId);
+        if (byId.isPresent()) {
+            // 조회결과가 있다 -> 사용 불가
+            return null;
+        } else {
+            // 조회결과 없다 -> 사용 가능
+            return "ok";
+        }
+
+    }
+
+    public String nicknameCheck(String nickname) {
+        Optional<MemberEntity> byNickname = memberRepository.findByNickname(nickname);
+        System.out.println("byNickname: " + byNickname );
+        if (byNickname.isPresent()) {
+            // 조회결과가 있다 -> 사용 불가
+            return null;
+        } else {
+            // 조회결과 없다 -> 사용 가능
+            return "ok";
+        }
     }
 }
