@@ -109,7 +109,7 @@ function execDaumPostcode() {
 }
 
 // formCheck
-function formCheck(){
+const formCheck = () => {
     const id = $('#idFormCheck').val();
     const nickname = $('#nicknameFormCheck').val();
 

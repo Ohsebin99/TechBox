@@ -16,7 +16,7 @@ public class MemberService {
 
     public MemberDTO save(MemberDTO memberDTO) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
-        MemberEntity save = memberRepository.save(memberEntity);
+        memberRepository.save(memberEntity);
 
         return memberDTO;
     }
