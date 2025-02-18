@@ -17,8 +17,9 @@ public class ProductService {
 
     public Page<ProductEntity> paging(Pageable pageable) {
         int page = pageable.getPageNumber() - 1;
-        int pageLimit = 8;
+        int productLimit = 8; // 한 페이지에 보여줄 게시물 개수
 
-     return productRepository.findAll(PageRequest.of(page, pageLimit));
+     return productRepository.findAll(PageRequest.of(page, productLimit));
     }
 }
+

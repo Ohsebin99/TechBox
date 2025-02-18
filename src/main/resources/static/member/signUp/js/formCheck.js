@@ -3,12 +3,10 @@ const idCheck = () => {
     const id = $('#userId').val();
     console.log(id);
     $.ajax({
-        url: '/member/id-check', // 서버의 엔드포인트 URL을 설정합니다.
-        type: 'POST',     // POST 요청을 사용하여 데이터를 서버로 전송합니다.
-        data: { userId: id },  // 서버로 보낼 데이터, 이 경우 userId를 전달합니다.
+        url: '/member/id-check', // 컨트롤러에 요청 할 URL 설정
+        type: 'POST',
+        data: { userId: id },  // 서버로 보낼 데이터, id 값을 userId 변수에 삽입 해 데이터를 넘겨준다.
         success: function(res) {
-          // 서버에서 응답을 받았을 때 처리하는 부분
-          console.log("아작스 : ", res)
 
           if (res === "success") {
                   // 서버에서 ID가 유효하다고 응답한 경우
@@ -23,11 +21,11 @@ const idCheck = () => {
                 }
         },
         error: function(err) {
-          // AJAX 요청에 오류가 발생한 경우 처리하는 부분
           console.log("오류 발생: " + err);
         }
       });
 }
+
 // 닉네임 중복 검사
 const nicknameCheck = () => {
     const nickname = $('#nickname').val();

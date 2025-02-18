@@ -27,13 +27,13 @@ public class MemberEntity {
     @Column(length = 11)
     private String phoneNumber;
 
-    @Column
+    @Column(length = 40)
     private String address;
 
-    @Column
+    @Column(length = 30)
     private String betterAddress;
 
-    @Column
+    @Column(length = 5)
     private String postcode;
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {

@@ -12,9 +12,9 @@ public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ProductId;
 
-    @Column(unique = true, length = 15)
+    @Column(unique = true, length = 30)
     private String productName;
 
     @Column(length = 15)

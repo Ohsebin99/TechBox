@@ -22,22 +22,23 @@ public class HomeController {
     private final ProductService productService;
 
     @GetMapping("/")
-    public String home(@PageableDefault(page = 1, size = 8, sort = "id", direction = Sort.Direction.DESC)
+    public String home(@PageableDefault(page = 1, size = 8, sort = "ProductId", direction = Sort.Direction.DESC)
                            Pageable pageable, Model model) {
 
-        Page<ProductEntity> productPage = productService.paging(pageable);
+        Page<ProductEntity> products = productService.paging(pageable);
 
-        int blockLimit = 10;
+        int blockLimit = 5; // 한 번에 보여질 페이지 개수
         int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1;
-        int endPage = Math.min((startPage + blockLimit - 1), productPage.getTotalPages());
+        int endPage = Math.min((startPage + blockLimit - 1), products.getTotalPages());
 
-        model.addAttribute("productList", productPage.getContent());  // 페이지별 제품 리스트
+        model.addAttribute("productList", products.getContent());  // 페이지별 제품 리스트
         model.addAttribute("currentPage", pageable.getPageNumber());  // 현재 페이지 번호
+        model.addAttribute("totalPage", products.getTotalPages());  // 총 페이지 번호
         model.addAttribute("startPage", startPage);  // 시작 페이지
         model.addAttribute("endPage", endPage);  // 끝 페이지
-
-
         return "main";
     }
-
 }
+
+
+

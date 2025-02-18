@@ -76,6 +76,7 @@ public class MemberController {
             return "fail";
         }
     }
+
     // 닉네임 중복 체크
     @PostMapping("/member/nickname-check")
     public @ResponseBody String nicknameCheck(@RequestParam("nickname") String nickname) {

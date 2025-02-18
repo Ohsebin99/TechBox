@@ -44,7 +44,6 @@ public class MemberService {
 
     public String idCheck(String userId) {
         Optional<MemberEntity> byId = memberRepository.findByUserId(userId);
-        System.out.println("userId 값: " + userId);
         if (byId.isPresent()) {
             // 조회결과가 있다 -> 사용 불가
             return null;
@@ -57,7 +56,6 @@ public class MemberService {
 
     public String nicknameCheck(String nickname) {
         Optional<MemberEntity> byNickname = memberRepository.findByNickname(nickname);
-        System.out.println("byNickname: " + byNickname );
         if (byNickname.isPresent()) {
             // 조회결과가 있다 -> 사용 불가
             return null;
