@@ -10,6 +10,15 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ .material-icons {
+ top: 0.5rem;
+ right: 0.5rem;
+ background: none;
+ border: none;
+ color: gray;
+ }
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -407,6 +416,7 @@ fieldset {
   margin: 0;
   border: 0;
 }
+
 
 legend {
   float: left;
