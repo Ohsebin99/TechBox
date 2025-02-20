@@ -1,5 +1,7 @@
 package com.techBox.dto;
 
+import com.techBox.entity.MemberEntity;
+import com.techBox.entity.ProductEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,5 +13,5 @@ public class LikeDTO {
     private Long likeId;
 
     private Long productId;
-    private Long userId;
+    private Long idIndex;
 }

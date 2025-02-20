@@ -1,5 +1,6 @@
 package com.techBox.entity;
 
+import com.techBox.dto.LikeDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,16 +20,11 @@ public class LikeEntity {
 
     @ManyToOne
     @JoinColumn(name = "idIndex", nullable = false)
-    private MemberEntity user;
+    private MemberEntity idIndex;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    private ProductEntity product;
-
-
-
-
-
+    private ProductEntity productId;
 
 
 }

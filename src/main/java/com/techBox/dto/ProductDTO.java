@@ -15,4 +15,5 @@ public class ProductDTO {
     private String productName;
     private int price;
     private String productImage;
+    private boolean liked;
 }
