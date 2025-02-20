@@ -38,6 +38,7 @@ public class MemberEntity {
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setIdIndex(memberDTO.getIdIndex());
         memberEntity.setUserId(memberDTO.getUserId());
         memberEntity.setPassword(memberDTO.getPassword());
         memberEntity.setNickname(memberDTO.getNickname());
