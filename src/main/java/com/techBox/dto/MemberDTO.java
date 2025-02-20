@@ -23,6 +23,7 @@ public class MemberDTO {
 
     public static MemberDTO toMemberDTO(MemberEntity memberEntity) {
         MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setIdIndex(memberEntity.getIdIndex());
         memberDTO.setUserId(memberEntity.getUserId());
         memberDTO.setPassword(memberEntity.getPassword());
         memberDTO.setNickname(memberEntity.getNickname());
