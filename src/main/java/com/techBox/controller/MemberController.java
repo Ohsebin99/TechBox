@@ -5,6 +5,7 @@ import com.techBox.entity.MemberEntity;
 import com.techBox.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -25,7 +26,6 @@ public class MemberController {
     // 회원가입
     @PostMapping("/member/signUp")
     public String SignUpForm(@ModelAttribute MemberDTO memberDTO, RedirectAttributes rab) {
-        System.out.println(memberDTO);
         memberService.save(memberDTO);
 
         rab.addFlashAttribute("signUpSuccess", memberDTO.getUserId() + "님 가입을 축하합니다.");
@@ -47,7 +47,9 @@ public class MemberController {
             // 로그인 성공
             // session
             session.setAttribute("userId", loginResult.getUserId());
+            session.setAttribute("idIndex", loginResult.getIdIndex());
             session.setAttribute("nickname", loginResult.getNickname());
+            System.out.println("아이디 인덱스 : " + loginResult.getIdIndex());
             rab.addFlashAttribute("loginSuccess", loginResult.getNickname() + "님 환영합니다.");
             return "redirect:/";
         } else {
