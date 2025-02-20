@@ -12,7 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class MemberDTO {
 
-    private String idIndex;
+    private Long idIndex;
     private String userId;
     private String password;
     private String nickname;
