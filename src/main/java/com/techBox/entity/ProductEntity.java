@@ -22,4 +22,7 @@ public class ProductEntity {
 
     @Column
     private String productImage;
+
+    @Column
+    private Boolean liked;
 }
