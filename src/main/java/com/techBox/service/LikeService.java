@@ -21,15 +21,6 @@ public class LikeService {
     private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
 
-//    public void deleteLike(ProductEntity productId, MemberEntity idIndex) {
-//        likeRepository.deleteByProductIdAndIdIndex(productId, idIndex);
-//    }
-
-//    public void save(Long productId, Long idIndex) {
-//        LikeEntity likeEntity = LikeEntity.toLikeEntity(productId, idIndex);
-//        likeRepository.save(likeEntity);
-//    }
-
 
     public void deleteLike(LikeDTO likeDTO) {
         Optional<MemberEntity> optionalMember = memberRepository.findById(likeDTO.getIdIndex());
@@ -54,4 +45,16 @@ public class LikeService {
         likeEntity.setProductId(productEntity);
         likeRepository.save(likeEntity);
     }
+
+    // 찜 여부 확인
+    public boolean isLiked(Long productId, Long idIndex) {
+        Optional<MemberEntity> member = memberRepository.findById(idIndex);
+        Optional<ProductEntity> product = productRepository.findById(productId);
+
+        if (member.isPresent() && product.isPresent()) {
+            return likeRepository.existsByProductIdAndIdIndex(product.get(), member.get());
+        }
+        return false;
+    }
+
 }

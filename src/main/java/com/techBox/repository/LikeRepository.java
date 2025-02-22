@@ -9,4 +9,7 @@ public interface LikeRepository extends JpaRepository<LikeEntity, Long> {
 
 
     void deleteByProductIdAndIdIndex(ProductEntity productId, MemberEntity idIndex);
+
+    boolean existsByProductIdAndIdIndex(ProductEntity productEntity, MemberEntity memberEntity);
+
 }

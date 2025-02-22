@@ -11,28 +11,20 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
+@ResponseBody
 public class LikeController {
 
     private final LikeService likeService;
 
-//    @DeleteMapping("/delete/like")
-//    public String likeDisable(HttpSession session, @RequestParam("productId") ProductEntity productId,
-//                              @RequestParam("idIndex") MemberEntity idIndex) {
-//        System.out.println("삭제 부분: " + productId + ", " + idIndex);
-//
-//        likeService.deleteLike(productId, idIndex);
-//        return "success";
-//    }
-//
-//    @PostMapping("/insert/like")
-//    public String likeActivate(@RequestParam("productId") ProductEntity productId,
-//                               @RequestParam("idIndex") MemberEntity idIndex) {
-//        System.out.println("삽입 부분: " + productId + ", " + idIndex);
-//        likeService.save(productId, idIndex);
-//        return "success";
-//    }
+    // 좋아요 확인
+    @GetMapping("/check/like")
+    public boolean checkLike(@RequestParam Long productId, @RequestParam Long idIndex) {
+        return likeService.isLiked(productId, idIndex);
+    }
+
+
+    // 좋아요 취소
     @DeleteMapping("/delete/like")
-    @ResponseBody
     public String likeDisable(@RequestBody LikeDTO likeDTO) {
         System.out.println("삭제 부분: " + likeDTO.getProductId() + ", " + likeDTO.getIdIndex());
 
@@ -40,12 +32,12 @@ public class LikeController {
         return "success";
     }
 
-        @PostMapping("/insert/like")
-        @ResponseBody
-        public String likeActivate(@RequestBody LikeDTO likeDTO) {
-            System.out.println("삽입 부분: " + likeDTO.getProductId() + ", " + likeDTO.getIdIndex());
-            likeService.save(likeDTO);
-            return "success";
-        }
+    // 좋아요
+    @PostMapping("/insert/like")
+    public String likeActivate(@RequestBody LikeDTO likeDTO) {
+        System.out.println("삽입 부분: " + likeDTO.getProductId() + ", " + likeDTO.getIdIndex());
+        likeService.save(likeDTO);
+        return "success";
+    }
 
 }
