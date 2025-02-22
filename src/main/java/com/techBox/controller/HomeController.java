@@ -30,6 +30,7 @@ public class HomeController {
         int blockLimit = 5; // 한 번에 보여질 페이지 개수
         int startPage = (((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1;
         int endPage = Math.min((startPage + blockLimit - 1), products.getTotalPages());
+
         model.addAttribute("productList", products.getContent());  // 페이지별 제품 리스트
         model.addAttribute("currentPage", pageable.getPageNumber());  // 현재 페이지 번호
         model.addAttribute("totalPage", products.getTotalPages());  // 총 페이지 번호
