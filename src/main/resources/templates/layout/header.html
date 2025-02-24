@@ -24,7 +24,10 @@
           <a class="btn btn-outline-danger" href="">
             <i class="bi-heart-fill me-1"></i>
             좋아요
-            <span class="badge bg-danger text-white ms-1 rounded-pill">0</span>
+            <span class="badge bg-danger text-white ms-1 rounded-pill"
+                  th:data-id-index="${session.idIndex}"
+                  id="likeCount"
+            >0</span>
           </a>
         </div>
 
