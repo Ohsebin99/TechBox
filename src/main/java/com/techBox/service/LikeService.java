@@ -8,6 +8,7 @@ import com.techBox.repository.LikeRepository;
 import com.techBox.repository.MemberRepository;
 import com.techBox.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,8 +54,20 @@ public class LikeService {
 
         if (member.isPresent() && product.isPresent()) {
             return likeRepository.existsByProductIdAndIdIndex(product.get(), member.get());
+        }else {
+            return false;
+
         }
-        return false;
     }
 
+    public Long count(Long idIndex) {
+        Optional<MemberEntity> optionalMember = memberRepository.findById(idIndex);
+
+        if (optionalMember.isPresent()) {
+            return likeRepository.countByIdIndex(optionalMember.get());
+        }else {
+            return 0L;
+        }
+
+    }
 }
