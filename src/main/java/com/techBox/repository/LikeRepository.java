@@ -5,6 +5,8 @@ import com.techBox.entity.MemberEntity;
 import com.techBox.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface LikeRepository extends JpaRepository<LikeEntity, Long> {
 
 
@@ -12,4 +14,5 @@ public interface LikeRepository extends JpaRepository<LikeEntity, Long> {
 
     boolean existsByProductIdAndIdIndex(ProductEntity productEntity, MemberEntity memberEntity);
 
+    Long countByIdIndex(MemberEntity memberEntity);
 }
