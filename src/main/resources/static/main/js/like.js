@@ -8,29 +8,29 @@ $(document).on('click', '.red__heart', (e) => {
         heart.val(1);
         heart.addClass('filled');
 
-        // 찜하기 활성화
+        // 좋아요 활성화
         axios.post("/insert/like", { productId, idIndex },
             { headers: {'Content-Type': 'application/json'} })
-            .then(() => getLikeCount(heart)) // 요청 성공 시 찜 개수 업데이트
-            .catch(error => console.error("찜하기 실패:", error));
+            .then(() => getLikeCountCheck(heart)) // 요청 성공 시 찜 개수 업데이트
+            .catch(error => console.error("좋아요 실패:", error));
 
     } else {
         heart.val(0);
         heart.removeClass('filled');
 
-        // 찜하기 취소
+        // 좋아요 취소
         axios.delete("/delete/like", { data: { productId, idIndex }, headers: {'Content-Type': 'application/json'} })
-            .then(() => getLikeCount(heart)) // 요청 성공 시 찜 개수 업데이트
+            .then(() => getLikeCountCheck(heart)) // 요청 성공 시 찜 개수 업데이트
             .catch(error => console.error("찜 취소 실패:", error));
     }
 });
 
 // 공통 함수로 추출
-function getLikeCount(heart) {
+function getLikeCountCheck(heart) {
     const idIndex = heart.data("id-index");
     const productId = heart.data("product-id");
 
-    // 현재 찜 개수
+    // 현재 좋아요 개수
     if(idIndex){
     axios.get("/count/like", { params: { idIndex } })
         .then(response => {
@@ -39,7 +39,7 @@ function getLikeCount(heart) {
         .catch(() => {});
        }
 
-        // 찜하기 유지
+        // 좋아요 유지
         if (idIndex) {
             axios.get("/check/like", {
                 params: { productId, idIndex }
@@ -56,6 +56,6 @@ function getLikeCount(heart) {
 // 페이지 로드 시 실행
 $(document).ready(() => {
     $('.red__heart').each(function () {
-        getLikeCount($(this));
+        getLikeCountCheck($(this));
     });
 });

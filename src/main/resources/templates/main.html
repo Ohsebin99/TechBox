@@ -47,7 +47,7 @@
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-lg-4 justify-content-start">
                 <div class="col mb-5" th:each="product : ${productList}">
                     <div class="card h-100 position-relative">
-                        <!-- 찜하기 버튼 (우상단) -->
+                        <!-- 좋아요 버튼 (우상단) -->
                         <button
                                 th:if="${session.userId == null}" class="material-icons red__heart position-absolute"
                                  disabled>

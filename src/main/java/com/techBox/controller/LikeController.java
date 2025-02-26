@@ -14,33 +14,30 @@ public class LikeController {
 
     private final LikeService likeService;
 
-    // 찜하기 유지
+    // 좋아요 유지
     @GetMapping("/check/like")
     public boolean checkLike(@RequestParam Long productId, @RequestParam Long idIndex) {
-            return likeService.isLiked(productId, idIndex);
+        return likeService.isLiked(productId, idIndex);
     }
 
 
-    // 찜하기 취소
+    // 좋아요 취소
     @DeleteMapping("/delete/like")
     public String likeDisable(@RequestBody LikeDTO likeDTO) {
-
         likeService.deleteLike(likeDTO);
         return "success";
     }
 
-    // 찜하기
+    // 좋아요 활성화
     @PostMapping("/insert/like")
     public String likeActivate(@RequestBody LikeDTO likeDTO) {
         likeService.save(likeDTO);
         return "success";
     }
 
+    // 찜 카운트
     @GetMapping("/count/like")
-    public Long countLike(@RequestParam Long idIndex, Model model) {
-        Long count = likeService.count(idIndex);
-        model.addAttribute("countLike", count);
-        System.out.println("라이크 카운트: " + count);
-        return count;
+    public Long countLike(@RequestParam Long idIndex) {
+        return likeService.count(idIndex);
     }
 }

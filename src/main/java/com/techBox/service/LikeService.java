@@ -8,7 +8,6 @@ import com.techBox.repository.LikeRepository;
 import com.techBox.repository.MemberRepository;
 import com.techBox.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +22,7 @@ public class LikeService {
     private final ProductRepository productRepository;
 
 
+    // 좋아요 삭제
     public void deleteLike(LikeDTO likeDTO) {
         Optional<MemberEntity> optionalMember = memberRepository.findById(likeDTO.getIdIndex());
         Optional<ProductEntity> optionalProduct = productRepository.findById(likeDTO.getProductId());
@@ -33,6 +33,7 @@ public class LikeService {
         likeRepository.deleteByProductIdAndIdIndex(productEntity, memberEntity);
     }
 
+    // 좋아요 활성화
     public void save(LikeDTO likeDTO) {
         Optional<MemberEntity> optionalMember = memberRepository.findById(likeDTO.getIdIndex());
         Optional<ProductEntity> optionalProduct = productRepository.findById(likeDTO.getProductId());
@@ -47,7 +48,7 @@ public class LikeService {
         likeRepository.save(likeEntity);
     }
 
-    // 찜 여부 확인
+    // 좋아요 여부 확인
     public boolean isLiked(Long productId, Long idIndex) {
         Optional<MemberEntity> member = memberRepository.findById(idIndex);
         Optional<ProductEntity> product = productRepository.findById(productId);
@@ -60,6 +61,7 @@ public class LikeService {
         }
     }
 
+    // 좋아요 카운트
     public Long count(Long idIndex) {
         Optional<MemberEntity> optionalMember = memberRepository.findById(idIndex);
 
