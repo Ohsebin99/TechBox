@@ -22,7 +22,7 @@ public class HomeController {
     private final ProductService productService;
 
     @GetMapping("/")
-    public String home(@PageableDefault(page = 1, size = 8, sort = "ProductId", direction = Sort.Direction.DESC)
+    public String home(@PageableDefault(page = 1, size = 8, sort = "productId", direction = Sort.Direction.DESC)
                            Pageable pageable, Model model) {
 
         Page<ProductEntity> products = productService.paging(pageable);

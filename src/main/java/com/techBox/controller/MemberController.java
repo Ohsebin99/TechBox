@@ -49,7 +49,6 @@ public class MemberController {
             session.setAttribute("userId", loginResult.getUserId());
             session.setAttribute("idIndex", loginResult.getIdIndex());
             session.setAttribute("nickname", loginResult.getNickname());
-            System.out.println("아이디 인덱스 : " + loginResult.getIdIndex());
             rab.addFlashAttribute("loginSuccess", loginResult.getNickname() + "님 환영합니다.");
             return "redirect:/";
         } else {

@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class ProductDTO {
 
-    private Long id;
+    private Long productId;
     private String productName;
     private int price;
     private String productImage;
