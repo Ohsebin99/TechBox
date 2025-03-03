@@ -11,7 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -71,5 +74,15 @@ public class LikeService {
             return 0L;
         }
 
+    }
+
+    public List<ProductEntity> getLikedProducts(Long idIndex) {
+
+        Optional<MemberEntity> optionalMember = memberRepository.findById(idIndex);
+        List<LikeEntity> likes = likeRepository.findByIdIndex(optionalMember.get());
+
+            return likes.stream()
+                    .map(LikeEntity::getProductId)
+                    .collect(Collectors.toList());
     }
 }
