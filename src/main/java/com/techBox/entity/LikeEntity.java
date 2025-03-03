@@ -22,9 +22,10 @@ public class LikeEntity {
     @JoinColumn(name = "idIndex", nullable = false)
     private MemberEntity idIndex;
 
+    // 여기서 product 엔티티 반환
+    @Getter
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity productId;
-
 
 }
