@@ -933,3 +933,33 @@ button:not(:disabled),
     padding-left: 3rem !important;
   }
 }
+
+/* 비활성화된 페이지 버튼 스타일 */
+.page-item.disabled {
+    pointer-events: none;  /* 클릭 방지 */
+    opacity: 0.5;          /* 반투명 */
+    cursor: not-allowed;   /* 🚫 금지 커서 */
+}
+
+/* Bootstrap 스타일을 유지하면서 비활성화 */
+.page-item.disabled .page-link {
+    color: #6c757d !important;   /* 기본 비활성화 색상 */
+    background-color: #e9ecef !important;
+    border-color: #dee2e6 !important;
+}
+
+.material-icons {
+top: 0.5rem;
+right: 0.5rem;
+background: none;
+border: none;
+color: gray;
+}
+
+.material-icons.filled {
+ top: 0.5rem;
+ right: 0.5rem;
+ background: none;
+ border: none;
+ color: red;
+ }

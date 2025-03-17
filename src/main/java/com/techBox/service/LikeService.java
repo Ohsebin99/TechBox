@@ -76,6 +76,7 @@ public class LikeService {
 
     }
 
+    // 좋아요 표시한 상품 가져오기
     public List<ProductEntity> getLikedProducts(Long idIndex) {
 
         Optional<MemberEntity> optionalMember = memberRepository.findById(idIndex);

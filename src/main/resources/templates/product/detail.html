@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 상세 페이지</title>
+    <link rel="stylesheet" href="/product/detail/css/style.css">
+    <link rel="stylesheet" href="/main/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="/main/js/like.js"></script>
+    <script type="text/javascript" src="/product/detail/js/cart.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<!-- 헤더 부분 -->
+<div th:replace="~{layout/header :: header}"></div>
+
+<main>
+    <div class="product-container">
+        <div class="product-image">
+            <img th:src="${detailProduct.productImage}" alt="이미지">
+        </div>
+        <div class="product-details">
+            <h2 th:text="${detailProduct.productName}">상품 이름</h2>
+            <p class="price" th:text="${#numbers.formatInteger(detailProduct.price, 0, 'COMMA')} + '원'">가격</p>
+            <p class="shipping">배송비: 3,000원</p>
+            <div class="button-group">
+            <button
+                    th:if="${session.userId == null}" class="material-icons red__heart small-heart" disabled>
+                favorite
+            </button>
+            <button th:if="${session.userId != null}"
+                    th:data-product-id="${detailProduct.productId}"
+                    th:data-id-index="${session.idIndex}"
+                    th:classappend="${detailProduct.liked} ? 'filled' : ''"
+                    th:value="${detailProduct.liked} ? '1' : '0'"
+                    class="material-icons red__heart small-heart">
+                favorite
+            </button>
+            <button th:if="${session.userId != null}"
+                    th:data-product-id="${detailProduct.productId}"
+                    th:data-id-index="${session.idIndex}"
+                    class="cart-btn">장바구니</button>
+            </div>
+            <button class="buy-btn">구매하기</button>
+        </div>
+    </div>
+</main>
+</body>
+</html>

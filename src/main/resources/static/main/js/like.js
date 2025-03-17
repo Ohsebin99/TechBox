@@ -59,3 +59,12 @@ $(document).ready(() => {
         getLikeCountCheck($(this));
     });
 });
+
+// 🔹 뒤로 가기 시 최신화 적용 (pageshow 이벤트 추가)
+window.addEventListener("pageshow", function(event) {
+    if (event.persisted) {
+        $('.red__heart').each(function () {
+            getLikeCountCheck($(this)); // 뒤로 가기 시 좋아요 상태 및 개수 갱신
+        });
+    }
+});

@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
 
+    ProductEntity findByProductId(ProductEntity productEntity);
 }
