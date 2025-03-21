@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,13 +42,14 @@ public class MemberController {
 
     // 로그인
     @PostMapping("/member/login")
-    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, RedirectAttributes rab) {
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, RedirectAttributes rab, Model model) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if (loginResult != null) {
             // 로그인 성공
             // session
             session.setAttribute("userId", loginResult.getUserId());
             session.setAttribute("idIndex", loginResult.getIdIndex());
+            model.addAttribute("idIndex", loginResult.getIdIndex());
             session.setAttribute("nickname", loginResult.getNickname());
             rab.addFlashAttribute("loginSuccess", loginResult.getNickname() + "님 환영합니다.");
             return "redirect:/";

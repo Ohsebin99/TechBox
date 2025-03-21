@@ -2,6 +2,7 @@ package com.techBox.service;
 
 import com.techBox.dto.CartDTO;
 import com.techBox.entity.CartEntity;
+import com.techBox.entity.LikeEntity;
 import com.techBox.entity.MemberEntity;
 import com.techBox.entity.ProductEntity;
 import com.techBox.repository.CartRepository;
@@ -11,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +24,7 @@ public class CartService {
     private final MemberRepository memberRepository;
     private final ProductRepository productRepository;
 
-    public void save(CartDTO cartDTO) {
+    public String save(CartDTO cartDTO) {
 
         Optional<MemberEntity> optionalMember = memberRepository.findById(cartDTO.getIdIndex());
         Optional<ProductEntity> optionalProduct = productRepository.findById(cartDTO.getProductId());
@@ -30,15 +33,37 @@ public class CartService {
         ProductEntity productId = optionalProduct.get();
 
         Optional<CartEntity> optionalCart = cartRepository.findByProductIdAndIdIndex(productId, IdIndex);
-        if (optionalCart.isPresent()){
-            System.out.println("상품 이미 존재");
-        }else {
+        if (optionalCart.isEmpty()){
             CartEntity cartEntity = new CartEntity();
             cartEntity.setIdIndex(IdIndex);
             cartEntity.setProductId(productId);
             cartRepository.save(cartEntity);
+            return "success";
+        }else {
+            return "fail";
         }
+    }
 
+    public List<ProductEntity> getLikedProducts(Long idIndex) {
+
+        Optional<MemberEntity> optionalMember = memberRepository.findById(idIndex);
+        List<CartEntity> carts = cartRepository.findByIdIndex(optionalMember.get());
+
+        return carts.stream()
+                .map(CartEntity::getProductId)
+                .collect(Collectors.toList());
+
+    }
+
+    public Long count(Long idIndex) {
+
+        Optional<MemberEntity> optionalMember = memberRepository.findById(idIndex);
+
+        if (optionalMember.isPresent()) {
+            return cartRepository.countByIdIndex(optionalMember.get());
+        }else {
+            return 0L;
+        }
 
     }
 }
