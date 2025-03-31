@@ -1,5 +1,6 @@
 package com.techBox.repository;
 
+import com.techBox.dto.MemberDTO;
 import com.techBox.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,6 +13,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
     // 닉네임 조회
     Optional<MemberEntity> findByNickname(String nickname);
+
 }
 
 

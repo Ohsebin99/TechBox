@@ -60,6 +60,6 @@ public class LikeController {
 
         List<ProductEntity> likedProducts = likeService.getLikedProducts(idIndex);
         model.addAttribute("likedProducts", likedProducts);
-        return "likeList"; // likeList.html 페이지 반환
+        return "/product/likeList"; // likeList.html 페이지 반환
     }
 }

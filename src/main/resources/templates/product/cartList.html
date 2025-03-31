@@ -3,13 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <!-- CSS -->
+    <th:block th:include="~{layout/css}"></th:block>
+    <!-- JS -->
+    <th:block th:include="~{layout/js}"></th:block>
 </head>
 <body>
-<div th:each="cartList : ${cartProducts}">
+    <!-- 헤더 -->
+    <div th:replace="~{layout/header :: header}"></div>
 
-  <p th:text="${cartList.productName}"></p>
-  <p th:text="${cartList.productId}"></p>
+    <section class="container py-5">
+        <h2 class="mb-4 text-center">장바구니</h2>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>상품 이미지</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>수량</th>
+                <th>합계</th>
+                <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${cartProducts}">
+                <td><img th:src="${product.productImage}" alt="상품 이미지" width="80"></td>
+                <td th:text="${product.productName}">상품명</td>
+                <td th:text="${#numbers.formatInteger(product.price, 0, 'COMMA')} + '원'"></td>
+                <td>
+                    <button class="btn btn-sm btn-outline-secondary" th:data-id="${product.productId}" onclick="decreaseQuantity(this)">-</button>
+<!--                    <span th:text="${product.quantity}">1</span>-->
+                    <button class="btn btn-sm btn-outline-secondary" th:data-id="${product.productId}" onclick="increaseQuantity(this)">+</button>
+                </td>
+                <td th:text="${#numbers.formatInteger(product.price, 0, 'COMMA')} + '원'"></td>
+                <td>
+                    <button class="btn btn-danger btn-sm" th:data-id="${product.productId}" onclick="removeFromCart(this)">삭제</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-</div>
+        <div class="text-end mt-4">
+            <h4>총 금액: <span id="totalPrice" th:text="${#numbers.formatInteger(totalPrice, 0, 'COMMA')} + '원'"></span></h4>
+            <button class="btn btn-primary" onclick="goToCheckout()">결제하기</button>
+        </div>
+    </section>
+
+    <!-- 풋터 -->
+    <div th:replace="~{layout/footer :: footer}"></div>
+    <!-- hidden -->
+    <input type="hidden" th:data-id-index="${session.idIndex}" class="cart-btn">
+    <input type="hidden" th:data-id-index="${session.idIndex}" class="red__heart">
 </body>
 </html>

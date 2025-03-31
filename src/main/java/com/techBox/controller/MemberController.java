@@ -30,7 +30,7 @@ public class MemberController {
         memberService.save(memberDTO);
 
         rab.addFlashAttribute("signUpSuccess", memberDTO.getUserId() + "님 가입을 축하합니다.");
-        return "member/login";
+        return "redirect:/member/login";
     }
 
     // 로그인 페이지 출력 요청
@@ -94,5 +94,11 @@ public class MemberController {
         }
     }
 
-
+    @PostMapping("/member/userUpdate")
+    public String userUpdate(@ModelAttribute("memberDTO") MemberDTO memberDTO, RedirectAttributes rab, HttpSession session) {
+        memberService.userUpdate(memberDTO);
+        rab.addFlashAttribute("updateSuccess", "회원정보가 수정되었습니다.");
+        session.invalidate();
+        return "redirect:/member/login";
+    }
 }

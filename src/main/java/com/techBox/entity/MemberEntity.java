@@ -1,7 +1,6 @@
 package com.techBox.entity;
 
 import com.techBox.dto.MemberDTO;
-import com.techBox.repository.MemberRepository;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,5 +47,15 @@ public class MemberEntity {
         memberEntity.setPostcode(memberDTO.getPostcode());
         return memberEntity;
     }
+
+//    public MemberEntity updateMember(MemberDTO memberDTO) {
+//        this.password = memberDTO.getPassword();
+//        this.nickname = memberDTO.getNickname();
+//        this.phoneNumber = memberDTO.getPhoneNumber();
+//        this.address = memberDTO.getAddress();
+//        this.betterAddress = memberDTO.getBetterAddress();
+//        this.postcode = memberDTO.getPostcode();
+//        return null;
+//    }
 
 }

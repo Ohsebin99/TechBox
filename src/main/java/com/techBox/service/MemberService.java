@@ -6,6 +6,7 @@ import com.techBox.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,11 +15,10 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public MemberDTO save(MemberDTO memberDTO) {
+    public void save(MemberDTO memberDTO) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
         memberRepository.save(memberEntity);
 
-        return memberDTO;
     }
 
     public MemberDTO login(MemberDTO memberDTO) {
@@ -64,4 +64,26 @@ public class MemberService {
             return "ok";
         }
     }
+
+    public MemberDTO selectMember(Long idIndex) {
+        Optional<MemberEntity> byId = memberRepository.findById(idIndex);
+        if (byId.isPresent()) {
+            // 회원 정보 존재
+            MemberEntity memberEntity = byId.get();
+            MemberDTO dto = MemberDTO.toMemberDTO(memberEntity);
+            return dto;
+        }else {
+            return null;
+        }
+    }
+
+    public void userUpdate(MemberDTO memberDTO) {
+        Optional<MemberEntity> byId = memberRepository.findById(memberDTO.getIdIndex());
+        // 엔티티에서 직접 업데이트 메서드 호출
+//        MemberEntity memberUpdate = memberEntity.updateMember(memberDTO);
+        MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
+        // 수정된 엔티티 저장
+        memberRepository.save(memberEntity);
+    }
 }
+

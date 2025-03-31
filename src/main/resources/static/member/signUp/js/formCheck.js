@@ -119,3 +119,10 @@ const formCheck = () => {
     }
 }
 
+const loginCheck = () => {
+    const id = $('#userId').val();
+    const password = $('#password');
+
+}
+
+

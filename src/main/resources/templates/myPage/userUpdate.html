@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <th:block th:include="~{layout/css}"></th:block>
+  <!-- JS -->
+  <th:block th:include="~{layout/js}"></th:block>
+  <script>
+    window.onload = function() {
+        let updateSuccess = "[[${updateSuccess}]]";
+        if (updateSuccess) {
+            alert(updateSuccess);
+        }
+    }
+  </script>
+</head>
+<body>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5">
+        <a href="/">
+          <h1 class="heading-section">TechBox</h1>
+        </a>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-6 col-xl-5">
+        <div class="login-wrap p-4 p-md-5">
+          <form action="/member/userUpdate" method="post" onsubmit="return formCheck()">
+            <div class="form-group mb-4">
+              <label class="label">닉네임</label>
+              <input type="text" name="nickname" id="nickname" onkeyup="nicknameCheck()" class="form-control"
+                     placeholder="닉네임"  th:value="${user.nickname}" required>
+              <div id="nicknameCheckMessage1"></div>
+              <div id="nicknameCheckMessage2"></div>
+            </div>
+            <div class="form-group mb-4">
+              <label class="label">휴대폰번호</label>
+              <input type="text" name="phoneNumber" class="form-control" placeholder="'-'없이 작성해주시기 바랍니다."
+                     value="01047067274" th:value="${user.phoneNumber}" required >
+            </div>
+            <div class="form-group mb-4">
+              <label class="label">주소</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="postcode" name="postcode"
+                       placeholder="우편번호" th:value="${user.postcode}" required>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" onclick="execDaumPostcode()">주소 찾기
+                  </button>
+                </div>
+              </div>
+              <input type="text" class="form-control mt-2" id="address" name="address"
+                     th:value="${user.address}" placeholder="주소" required>
+              <input type="text" class="form-control mt-2" id="detailAddress" name="betterAddress"
+                     placeholder="상세주소" th:value="${user.betterAddress}" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary rounded submit p-3">회원정보 수정</button>
+            </div>
+            <input type="hidden" th:value="${user.idIndex}" name="idIndex">
+            <input type="hidden" th:value="${user.userId}" name="userId">
+            <input type="hidden" th:value="${user.password}" name="password">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <input type="hidden"  value="YES" id="idFormCheck">
+  <input type="hidden" id="nicknameFormCheck">
+</section>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</body>
+</html>

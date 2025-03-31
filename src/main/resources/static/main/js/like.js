@@ -3,6 +3,10 @@ $(document).on('click', '.red__heart', (e) => {
     const productId = heart.data("product-id");
     const idIndex = heart.data("id-index");
 
+    if(idIndex === null){
+        alert('로그인이 필요합니다.')
+    }
+
 
     if (heart.val() == '0') {
         heart.val(1);

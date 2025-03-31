@@ -6,16 +6,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>TechBox Shop</title>
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <!-- CSS -->
-        <link href="/main/css/styles.css" rel="stylesheet"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- axios CDN 링크 추가 -->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-        <script type="text/javascript" src="/main/js/like.js"></script>
-        <script type="text/javascript" src="/product/detail/js/cart.js"></script>
+        <th:block th:include="~{layout/css}"></th:block>
+        <!-- JS -->
+        <th:block th:include="~{layout/js}"></th:block>
 
         <script>
             window.onload = function() {
@@ -39,6 +33,7 @@
                 </div>
             </div>
         </header>
+
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <!-- 상품 리스트 -->
@@ -90,10 +85,11 @@
                 </ul>
             </nav>
         </div>
+        </div>
     </section>
     <!-- 풋터 부분 -->
     <div th:replace="~{layout/footer :: footer}"></div>
     <!-- hidden -->
-    <input type="hidden" th:data-id-index="${session.idIndex}" class="cart-btn"></input>
+    <input type="hidden" th:data-id-index="${session.idIndex}" class="cart-btn">
     </body>
 </html>

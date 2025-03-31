@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>likePage</title>
+  <!-- CSS -->
+  <th:block th:include="~{layout/css}"></th:block>
+  <!-- JS -->
+  <th:block th:include="~{layout/js}"></th:block>
+</head>
+<body>
+<!-- 헤더 부분 -->
+<div th:replace="~{layout/header :: header}"></div>
+  <section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+      <!-- 상품 리스트 -->
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-lg-4 justify-content-start">
+        <div class="col mb-5" th:each="product : ${likedProducts}">
+          <div class="card h-100 position-relative">
+            <!-- 찜하기 버튼 -->
+            <button
+                    th:if="${session.userId == null}" class="material-icons red__heart position-absolute" disabled>
+              favorite
+            </button>
+            <button th:if="${session.userId != null}"
+                    th:data-product-id="${product.productId}"
+                    th:data-id-index="${session.idIndex}"
+                    th:classappend="${product.liked} ? 'filled' : ''"
+                    th:value="${product.liked} ? '1' : '0'"
+                    class="material-icons red__heart position-absolute">
+              favorite
+            </button>
+            <a th:href="@{/detailPage/{id}(id=${product.productId})}" class="detailPage">
+              <!-- 상품 이미지 -->
+              <img class="card-img-top" th:src="${product.productImage}" alt="상품 이미지" />
+
+              <!-- 상품 정보 -->
+              <div class="card-body p-4 text-center">
+                <h5 class="fw-bolder" th:text="${product.productName}">상품 이름</h5>
+                <p th:text="${#numbers.formatInteger(product.price, 0, 'COMMA')} + '원'"></p>
+              </div>
+          </div>
+          </a>
+        </div>
+      </div>
+      </div>
+  </section>
+  <!-- 풋터 부분 -->
+  <div th:replace="~{layout/footer :: footer}"></div>
+  <!-- hidden -->
+  <input type="hidden" th:data-id-index="${session.idIndex}" class="cart-btn">
+</body>
+</html>

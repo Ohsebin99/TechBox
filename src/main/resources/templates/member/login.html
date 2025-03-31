@@ -7,25 +7,31 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<link rel="stylesheet" href="/member/login/css/style.css"/>
+	<!-- CSS -->
+	<th:block th:include="~{layout/css}"></th:block>
+	<!-- JS -->
+	<th:block th:include="~{layout/js}"></th:block>
 
 	<!--	 로그인 실패 alert 스크립트-->
 	<script>
 		window.onload = function() {
             let errorMessage = "[[${loginError}]]";
             let signUpSuccess = "[[${signUpSuccess}]]";
+            let updateSuccess = "[[${updateSuccess}]]";
             if (errorMessage) {
                 alert(errorMessage);
             } else if (signUpSuccess) {
                 alert(signUpSuccess);
+            }  else if (updateSuccess) {
+                alert(updateSuccess);
             }
-        }
+		}
 	</script>
 </head>
 <body>
+<div>
 
+</div>
 <section class="ftco-section">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -40,12 +46,12 @@
 				<div class="login-wrap p-4 p-md-5">
 					<h4 class="text-center">로그인</h4>
 					<h3 class="text-center mb-4"></h3> <!--여기 나중에 공간 만들어주기-->
-					<form action="/member/login" method="post">
+					<form action="/member/login" method="post" onsubmit="return formCheck()">
 						<div class="form-group">
-							<input type="text" name="userId" class="form-control rounded-left" placeholder="아이디" required>
+							<input type="text" name="userId" id="userId" class="form-control rounded-left" placeholder="아이디" required>
 						</div>
 						<div class="form-group d-flex">
-							<input type="password" name="password" class="form-control rounded-left" placeholder="비밀번호" required>
+							<input type="password" name="password" id="password" class="form-control rounded-left" placeholder="비밀번호" required>
 						</div>
 						<div class="form-group d-md-flex justify-content-end">
 							<div class="text-end">
@@ -63,8 +69,6 @@
 	</div>
 </section>
 
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
