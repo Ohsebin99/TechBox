@@ -5,8 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
 	<!-- CSS -->
 	<th:block th:include="~{layout/css}"></th:block>
 	<!-- JS -->
@@ -25,50 +23,39 @@
             }  else if (updateSuccess) {
                 alert(updateSuccess);
             }
-		}
+        }
 	</script>
 </head>
 <body>
-<div>
-
-</div>
-<section class="ftco-section">
+<section class="min-vh-100 d-flex justify-content-center align-items-center">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md-6 text-center mb-5">
-				<a href="/">
-					<h1 class="heading-section">TechBox</h1>
-				</a>
-			</div>
-		</div>
-		<div class="row justify-content-center">
-			<div class="col-md-6 col-lg-5">
-				<div class="login-wrap p-4 p-md-5">
-					<h4 class="text-center">로그인</h4>
-					<h3 class="text-center mb-4"></h3> <!--여기 나중에 공간 만들어주기-->
-					<form action="/member/login" method="post" onsubmit="return formCheck()">
-						<div class="form-group">
-							<input type="text" name="userId" id="userId" class="form-control rounded-left" placeholder="아이디" required>
+			<div class="col-md-5">
+				<div class="text-center mb-4">
+					<a href="/" class="heading-section">
+					<h1>TechBox</h1>
+					</a>
+				</div>
+				<div class="login-card">
+					<h4 class="text-center mb-4">로그인</h4>
+					<form action="/member/login" method="post">
+						<div class="mb-3">
+							<input type="text" class="form-control" name="userId" placeholder="아이디" required>
 						</div>
-						<div class="form-group d-flex">
-							<input type="password" name="password" id="password" class="form-control rounded-left" placeholder="비밀번호" required>
+						<div class="mb-3">
+							<input type="password" class="form-control" name="password" placeholder="비밀번호" required>
 						</div>
-						<div class="form-group d-md-flex justify-content-end">
-							<div class="text-end">
-								<a href="#">비밀번호 찾기</a> | <a href="/member/signUp">회원가입</a>
-							</div>
+						<div class="d-flex justify-content-end link-text mb-4">
+							<a href="#">비밀번호 찾기</a>
+							<span class="mx-1">|</span>
+							<a href="/member/signUp">회원가입</a>
 						</div>
-						<div class="form-group">
-							<button type="submit" class="btn btn-primary rounded submit p-3 px-5">로그인</button>
-						</div>
+						<button type="submit" class="btn login-btn w-100">로그인</button>
 					</form>
-					[[${script}]]
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-
 </body>
 </html>

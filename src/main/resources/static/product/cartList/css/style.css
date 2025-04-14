@@ -1,0 +1,22 @@
+.cartList td img{
+    text-align: center;
+    border: none;
+    width: 80px;
+    position: relative;
+    bottom : 30px;
+}
+
+.cartList td{
+    text-align: center;
+    border: none;
+    padding-top: 70px;
+}
+
+
+
+.headerList tr th{
+    text-align: center;
+    background-color: #545454;
+    color: white;
+    border: none;
+}

@@ -24,4 +24,6 @@ public class CartEntity {
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity productId;
+
+
 }

@@ -20,7 +20,7 @@ public class LikeController {
     // 좋아요 유지
     @ResponseBody
     @GetMapping("/check/like")
-    public boolean checkLike(@RequestParam Long productId, @RequestParam Long idIndex) {
+    public boolean checkLike(@RequestParam("productId") Long productId, @RequestParam("idIndex") Long idIndex) {
         return likeService.isLiked(productId, idIndex);
     }
 

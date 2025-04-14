@@ -60,7 +60,6 @@ public class LikeService {
             return likeRepository.existsByProductIdAndIdIndex(product.get(), member.get());
         }else {
             return false;
-
         }
     }
 

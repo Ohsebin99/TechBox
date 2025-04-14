@@ -25,4 +25,7 @@ public class ProductEntity {
 
     @Column
     private Boolean liked;
+
+    @Column
+    private int quantity;
 }
