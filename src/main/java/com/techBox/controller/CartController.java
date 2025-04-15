@@ -22,7 +22,7 @@ public class CartController {
     @ResponseBody
     @PostMapping("/insert/cart")
     public String cartInsert(@RequestBody CartDTO cartDTO){
-
+        System.out.println("카트카트" + cartDTO);
         return cartService.save(cartDTO);
     }
 
@@ -47,4 +47,5 @@ public class CartController {
     public Long countCart(@RequestParam Long idIndex, Model model) {
         return cartService.count(idIndex);
     }
+
 }

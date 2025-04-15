@@ -1,13 +1,27 @@
+// 장바구니 코드
 $(document).on('click', '.cart-btn', (e) => {
     let cart = $(e.currentTarget);
-    const productId = cart.data("product-id");
+    const sumPrice = $(".sumPrice");
+    let sumPriceValue = sumPrice.data("sum-price") || cart.data("product-price");
+    let cleanedPrice = typeof sumPriceValue === 'string' ? sumPriceValue.replace(/[^0-9]/g, "") : sumPriceValue;
+    const product = {
+            productId: cart.data("product-id"),
+            productName: cart.data("product-name"),
+            price: parseInt(cleanedPrice),
+            productImage: cart.data("product-image"),
+            quantity: parseInt($(".quantity").val())
+        };
     const idIndex = cart.data("id-index");
 
-    console.log("아이디 : ", idIndex, ", ", "상품 : ", productId);
+    console.log("아이디 : ", idIndex, ", ", "상품 : ", product);
 
         // 장바구니 추가
         axios.post("/insert/cart", {
-            productId: productId,
+            productId: product.productId,
+            productName: product.productName,
+            price: product.price,
+            productImage: product.productImage,
+            quantity: product.quantity,
             idIndex: idIndex
         }, {
             headers: {'Content-Type': 'application/json'}
@@ -60,3 +74,37 @@ window.addEventListener("pageshow", function(event) {
         });
     }
 });
+
+// 수량 코드 ===
+
+// 수량 감소
+$(document).on('click', '.decreaseQuantity', (e) => {
+    const cnt = $(".quantity");
+    let decreaseBtn = $(e.currentTarget);
+    let value = parseInt(cnt.val());
+    if (parseInt(cnt.val()) > 1) {
+        cnt.val(value - 1);
+        }
+    const sumPrice = $(".sumPrice");
+    let price = (parseInt(sumPrice.data("product-price")) * cnt.val()).toLocaleString();
+    sumPrice.text(price + "원");
+    sumPrice.data("sum-price", price); // 수량 증,감소에 따른 가격을 저장해 상단 코드로 보내기
+});
+
+// 수량 증가
+$(document).on('click', '.increaseQuantity', (e) => {
+    const cnt = $(".quantity");
+    let decreaseBtn = $(e.currentTarget);
+    let value = parseInt(cnt.val());
+
+    if (parseInt(cnt.val()) < 30) {
+       cnt.val(value + 1);
+    }
+    const sumPrice = $(".sumPrice");
+    let price = (parseInt(sumPrice.data("product-price")) * cnt.val()).toLocaleString();
+    sumPrice.text(price + "원");
+    sumPrice.data("sum-price", price); // 수량 증,감소에 따른 가격을 저장해 상단 코드로 보내기
+});
+
+
+

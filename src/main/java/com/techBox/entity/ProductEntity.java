@@ -14,7 +14,7 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @Column(unique = true, length = 30)
+    @Column(length = 30)
     private String productName;
 
     @Column(length = 15)
@@ -26,6 +26,6 @@ public class ProductEntity {
     @Column
     private Boolean liked;
 
-    @Column
+    @Column(length = 30)
     private int quantity;
 }

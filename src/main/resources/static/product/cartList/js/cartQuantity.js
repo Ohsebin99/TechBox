@@ -53,41 +53,11 @@ function updateTotalPrice() {
 
     $('#totalPrice').text(total.toLocaleString() + "원");
 }
-// 전체 체크박스
 
 $(document).on('change', '.all-checkbox', function () {
-    if ($(this).is(':checked')) {
-        $('.product-checkbox').prop('checked', true);
+    if ($(this).is(':checked')){
+        $('.product-checkbox').prop('checked', true).trigger('change');
     } else {
-        $('.product-checkbox').prop('checked', false);
+        $('.product-checkbox').prop('checked', false).trigger('change');
     }
 });
-
-// ==== 실패
-// 공통 함수로 추출
-/*
-function getCheckBox(box) {
-    const idIndex = box.data("id-index");
-    const productId = box.data("product-id");
-
-        // 체크박스 유지
-        if (idIndex) {
-            axios.get("/check/like", {
-                params: { productId, idIndex }
-            }).then(response => {
-                consol.log("체크박스",response);
-                if (response.data === true) {
-                    $('.product-checkbox').prop('checked', true);
-                } else {
-                    $('.product-checkbox').prop('checked', false);
-                }
-            }).catch(() => {});
-        }
-}
-// 페이지 로드 시 실행
-$(document).ready(() => {
-    $('.product-checkbox').each(function () {
-        getCheckBox($(this));
-    });
-});
-*/

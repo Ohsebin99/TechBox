@@ -18,7 +18,7 @@
         <table class="table table-bordered">
             <thead class="headerList">
             <tr>
-                <th><input type="checkbox" class="all-checkbox"></th>
+                <th><input type="checkbox" class="all-checkbox" th:checked="true"></th>
                 <th>상품 이미지</th>
                 <th>상품명</th>
                 <th>가격</th>
@@ -29,15 +29,15 @@
             </thead>
             <tbody>
             <tr th:each="product : ${cartProducts}" class="cartList">
-                <td><input type="checkbox" class="product-checkbox" th:data-product-id="${product.productId}" th:data-id="${product.productId}"> </td>
-                <td><img th:src="${product.productImage}" alt="상품 이미지"></td>
+                <td><input type="checkbox" class="product-checkbox" th:checked="true" th:data-product-id="${product.productId}" th:data-id="${product.productId}"> </td>
+                <td><a th:href="@{/detailPage/{id}(id=${product.productId})}"><img th:src="${product.productImage}" alt="상품 이미지"></a></td>
                 <td th:text="${product.productName}">상품명</td>
                 <td th:text="${#numbers.formatInteger(product.price, 0, 'COMMA')} + '원'"></td>
                 <td>
                     <div class="input-group input-group-sm">
-                        <button class="btn btn-outline-secondary decreaseQuantity" type="button" th:data-product-id="${product.productId}">-</button>
+                        <button class="btn btn-outline-secondary decreaseQuantity" type="button">-</button>
                         <input type="text" class="form-control text-center quantity" th:value="${product.quantity}" size="1" readonly>
-                        <button class="btn btn-outline-secondary increaseQuantity" type="button" th:data-product-id="${product.productId}">+</button>
+                        <button class="btn btn-outline-secondary increaseQuantity" type="button">+</button>
                     </div>
                 </td>
                 <td class="sumPrice" th:data-product-price="${product.price}" th:text="${#numbers.formatInteger(product.price, 0, 'COMMA')} + '원'"></td>

@@ -34,7 +34,7 @@ public class CartService {
 
         Optional<CartEntity> optionalCart = cartRepository.findByProductIdAndIdIndex(productId, IdIndex);
         if (optionalCart.isEmpty()){
-            CartEntity cartEntity = new CartEntity();
+            CartEntity cartEntity = CartEntity.toCartEntity(cartDTO);
             cartEntity.setIdIndex(IdIndex);
             cartEntity.setProductId(productId);
             cartRepository.save(cartEntity);
