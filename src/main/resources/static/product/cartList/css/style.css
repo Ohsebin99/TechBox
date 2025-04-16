@@ -20,3 +20,11 @@
     color: white;
     border: none;
 }
+
+
+.sumPrice {
+     font-family: monospace;
+}
+.quantity{
+    width : 1px;
+}
