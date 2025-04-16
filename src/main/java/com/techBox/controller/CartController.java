@@ -1,6 +1,7 @@
 package com.techBox.controller;
 
 import com.techBox.dto.CartDTO;
+import com.techBox.entity.CartEntity;
 import com.techBox.entity.ProductEntity;
 import com.techBox.service.CartService;
 import com.techBox.service.ProductService;
@@ -36,7 +37,8 @@ public class CartController {
             return "redirect:/member/login";
         }
 
-        List<ProductEntity> cartProducts = cartService.getLikedProducts(idIndex);
+        List<CartEntity> cartProducts = cartService.getCartProducts(idIndex);
+        System.out.println("카트 리스트: " + cartProducts);
         model.addAttribute("cartProducts", cartProducts);
         return "/product/cartList";
     }

@@ -4,10 +4,12 @@ import com.techBox.dto.CartDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Setter
 @Getter
+@ToString
 @Table(name = "cart_table", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"user_id", "product_id"})
 })
@@ -32,6 +34,9 @@ public class CartEntity {
     @Column(length = 15)
     private int price;
 
+    @Column(length = 15)
+    private int sumPrice;
+
     @Column
     private String productImage;
 
@@ -45,6 +50,7 @@ public class CartEntity {
         CartEntity cartEntity = new CartEntity();
         cartEntity.setProductName(cartDTO.getProductName());
         cartEntity.setPrice(cartDTO.getPrice());
+        cartEntity.setSumPrice(cartDTO.getSumPrice());
         cartEntity.setProductImage(cartDTO.getProductImage());
         cartEntity.setQuantity(cartDTO.getQuantity());
 

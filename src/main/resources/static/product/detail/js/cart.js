@@ -7,9 +7,10 @@ $(document).on('click', '.cart-btn', (e) => {
     const product = {
             productId: cart.data("product-id"),
             productName: cart.data("product-name"),
-            price: parseInt(cleanedPrice),
+            price: cart.data("product-price"),
+            sumPrice: parseInt(cleanedPrice),
             productImage: cart.data("product-image"),
-            quantity: parseInt($(".quantity").val())
+            quantity: parseInt($(".detailQuantity").val())
         };
     const idIndex = cart.data("id-index");
 
@@ -20,6 +21,7 @@ $(document).on('click', '.cart-btn', (e) => {
             productId: product.productId,
             productName: product.productName,
             price: product.price,
+            sumPrice: product.sumPrice,
             productImage: product.productImage,
             quantity: product.quantity,
             idIndex: idIndex
@@ -78,8 +80,8 @@ window.addEventListener("pageshow", function(event) {
 // 수량 코드 ===
 
 // 수량 감소
-$(document).on('click', '.decreaseQuantity', (e) => {
-    const cnt = $(".quantity");
+$(document).on('click', '.minusQuantity', (e) => {
+    const cnt = $(".detailQuantity");
     let decreaseBtn = $(e.currentTarget);
     let value = parseInt(cnt.val());
     if (parseInt(cnt.val()) > 1) {
@@ -92,8 +94,8 @@ $(document).on('click', '.decreaseQuantity', (e) => {
 });
 
 // 수량 증가
-$(document).on('click', '.increaseQuantity', (e) => {
-    const cnt = $(".quantity");
+$(document).on('click', '.plusQuantity', (e) => {
+    const cnt = $(".detailQuantity");
     let decreaseBtn = $(e.currentTarget);
     let value = parseInt(cnt.val());
 

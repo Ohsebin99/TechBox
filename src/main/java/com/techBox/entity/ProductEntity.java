@@ -3,10 +3,12 @@ package com.techBox.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Setter
 @Getter
+@ToString
 @Table(name = "product_table")
 public class ProductEntity {
 

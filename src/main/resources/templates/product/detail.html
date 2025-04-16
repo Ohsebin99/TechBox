@@ -52,9 +52,9 @@
                     장바구니
                 </button>
                 <div class="input-group input-group-sm quantityBtn">
-                    <button class="btn btn-outline-secondary decreaseQuantity" type="button">-</button>
-                    <input type="text" class="form-control text-center quantity" th:value="${detailProduct.quantity}" size="1" readonly>
-                    <button class="btn btn-outline-secondary increaseQuantity" type="button">+</button>
+                    <button class="btn btn-outline-secondary minusQuantity" type="button">-</button>
+                    <input type="text" class="form-control text-center detailQuantity" th:value="${detailProduct.quantity}" size="1" readonly>
+                    <button class="btn btn-outline-secondary plusQuantity" type="button">+</button>
                 </div>
             </div>
 

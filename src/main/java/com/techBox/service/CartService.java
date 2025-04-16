@@ -1,6 +1,7 @@
 package com.techBox.service;
 
 import com.techBox.dto.CartDTO;
+import com.techBox.dto.MemberDTO;
 import com.techBox.entity.CartEntity;
 import com.techBox.entity.LikeEntity;
 import com.techBox.entity.MemberEntity;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,6 +31,10 @@ public class CartService {
         Optional<MemberEntity> optionalMember = memberRepository.findById(cartDTO.getIdIndex());
         Optional<ProductEntity> optionalProduct = productRepository.findById(cartDTO.getProductId());
 
+        if(optionalMember.isEmpty() || optionalProduct.isEmpty()){
+            return "fail";
+        }
+
         MemberEntity IdIndex = optionalMember.get();
         ProductEntity productId = optionalProduct.get();
 
@@ -40,20 +46,31 @@ public class CartService {
             cartRepository.save(cartEntity);
             return "success";
         }else {
-            return "fail";
+            // 이미 있으면 수량을 업데이트
+            CartEntity cartEntity = optionalCart.get();
+            cartEntity.setQuantity(cartDTO.getQuantity());
+            cartEntity.setSumPrice(cartDTO.getSumPrice());
+            cartRepository.save(cartEntity);
+            return "update";
         }
     }
 
-    public List<ProductEntity> getLikedProducts(Long idIndex) {
+    public List<CartEntity> getCartProducts(Long idIndex) {
 
         Optional<MemberEntity> optionalMember = memberRepository.findById(idIndex);
-        List<CartEntity> carts = cartRepository.findByIdIndex(optionalMember.get());
-
-        return carts.stream()
-                .map(CartEntity::getProductId)
-                .collect(Collectors.toList());
+        if (optionalMember.isPresent()) {
+            MemberEntity member = optionalMember.get();
+            return cartRepository.findByIdIndex(member);
+        } else {
+            // 회원이 존재하지 않으면 빈 리스트 반환
+            return new ArrayList<>();
+        }
 
     }
+
+    /*carts.stream()
+            .map(CartEntity::getProductId)
+                .collect(Collectors.toList());*/
 
     public Long count(Long idIndex) {
 
